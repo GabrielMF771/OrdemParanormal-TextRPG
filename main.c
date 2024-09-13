@@ -60,15 +60,6 @@ int main(){
 
     // Tela de inicio
 
-    
-    printf("Loading"); // Exibir a Palavra Loading na tela em branco
-
-    for(i=0;i < 10; i++){ // abrir um laço de repetição com for
-    Sleep(1000); // pausa de 1 segundo
-    printf("."); // escrever 1 "." na tela
-    fflush(stdout); // atualizar a tela
-    } 
-
     printf("\n\n\n\n\n\n\n\n\n\t\t\t\t\tAs Mãos que Nos Acolhem");
 
     printf("\n\n\n A cidade de Tronco do Oeste está borbulhando com desaparecimentos de crianças de 6 anos de idade. Todas desapareceram\n na noite do dia em que seus pais notaram misteriosas marcas de mãos em suas costas. Os recrutas da Ordem são enviados\n para a cidade para investigar esses desaparecimentos e determinar se o caso se trata de um evento paranormal.\n O que eles não esperavam era que iriam se deparar com um dilema: reportar o acontecido e esperar reforços,\n possivelmente colocando a vida de mais uma criança em perigo; ou enfrentar uma perigosa criatura, apesar de serem\n apenas recrutas?");
