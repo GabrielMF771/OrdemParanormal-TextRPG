@@ -21,16 +21,26 @@ ficha_personagem mauro = {
 };
 
 //Armas
-arma katana = {"Katana", "Branca", "Adjacente", 10};
-arma faca_combate = {"Faca de Combate", "Branca", "Curto", 6};
-arma revolver = {"Revolver .38", "Fogo", "Curto", 8};
+arma armas[] = {
+    {"Katana", "Branca", "Adjacente", 10},
+    {"Faca de Combate", "Branca", "Curto", 6},
+    {"Revólver .38", "Fogo", "Curto", 8}
+};
 
-//Funções
-void abrirFichaPersonagem(){
+//Inventário
+item_inventario inventario[] = {
+    {"Jaqueta reforçada", "Proteção Leve"},
+    {"Fonte de Luz", "Utensílio"}
+};
+
+int i;
+
+// Funções
+void abrirFichaPersonagem() {
     printf("Mauro Nunes\n\n");
 
     printf("HISTÓRIA -----------------------------------------\n\n");
-    printf("Mauro Nunes era um personal trainer e lutador aflito com a falta de motivação pessoal em sua vida, até que presenciou ataque de uma criatura paranormal dentro da academia em que trabalhava. O seu instinto inicial foi partir para cima e protegervida de todos que estavam lá, pois considera vaas mais importantes que a sua, o que impressionou os agentes da Ordem que haviacabado de chegar no local.\n\n");
+    printf("Mauro Nunes era um personal trainer e lutador aflito com a falta de motivação pessoal em sua vida, até que presenciou ataque de uma criatura paranormal dentro da academia em que trabalhava. O seu instinto inicial foi partir para cima e proteger vida de todos que estavam lá, pois considerava as mais importantes que a sua, o que impressionou os agentes da Ordem que haviam acabado de chegar no local.\n\n");
 
     printf("ATRIBUTOS -----------------------------------------\n\n");
     printf("Nex: %d%%\n", mauro.nex);
@@ -41,20 +51,20 @@ void abrirFichaPersonagem(){
     printf("Vigor: %d\n", mauro.vigor);
     printf("Presença: %d\n\n", mauro.presenca);
 
-    printf("INVENTÁRIO ---------------------------------------\n\n");
-    printf("Katana              |   Arma corpo a corpo especial de duas mãos\n");
-    printf("Faca de combate     |   Arma corpo a corpo simples de uma mão   \n");
-    printf("Revólver (CP)       |   Calibre Pequeno                         \n");
-    printf("Munição(2x)         |   Calibre Pequeno                         \n");
-    printf("Jaqueta reforçada   |   Proteção Leve                           \n");
-    printf("Fonte de Luz        |   Utensílio                              \n\n");
+    printf("INVENTÁRIO ---------------------------------------\n");
+    printf("Item                    |  Descrição                           \n");
+    printf("--------------------------------------------------------------\n");
+    for (size_t i = 0; i < sizeof(inventario) / sizeof(inventario[0]); i++) {
+        printf("%-24s |  %s\n", inventario[i].nome, inventario[i].descricao);
+    }
+    printf("\n");
 
     printf("ARMAS --------------------------------------------\n");
-    printf("Nome            |  Dano     |  Alcance            \n");
-    printf("--------------------------------------------------\n");
-    printf("%s\t\t   %d\t\t%s          \n", katana.nome, katana.dano, katana.alcance);
-    printf("%s\t   %d\t\t%s          \n", faca_combate.nome, faca_combate.dano, faca_combate.alcance);
-    printf("%s\t   %d\t\t%s          \n", revolver.nome, revolver.dano, revolver.alcance);
+    printf("Nome                    |  Dano   |  Alcance            \n");
+    printf("--------------------------------------------------------\n");
+    for (size_t i = 0; i < sizeof(armas) / sizeof(armas[0]); i++) {
+        printf("%-24s |  %d  |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
+    }
     printf("\n\n");
 }
 
