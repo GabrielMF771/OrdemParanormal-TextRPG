@@ -1,7 +1,3 @@
-#ifndef CHARACTERS_H
-#define CHARACTERS_H
-
-void abrirFichaPersonagem();
 
 typedef struct
     {
@@ -18,5 +14,3 @@ typedef struct
         int sanidade;
         int ponto_esforco;
     } ficha_personagem;
-
-#endif
