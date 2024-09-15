@@ -8,32 +8,14 @@
 #include "characters.h"
 #include "weapons.h"
 
-//Atributos do Personagem
-ficha_personagem mauro = {
-    .nome = "Mauro Nunes",
-    .nex = 5,
-    .classe = "Combatente",
-    .forca = 2,
-    .agilidade = 0,
-    .inteligencia = -1,
-    .vigor = 2,
-    .presenca = 1
-};
+int i;
 
-//Armas
-arma armas[] = {
-    {"Katana", "Branca", "Adjacente", 10},
-    {"Faca de Combate", "Branca", "Curto", 6},
-    {"Revólver .38", "Fogo", "Curto", 8}
-};
-
-//Inventário
+//Itens iniciais no inventário
 item_inventario inventario[] = {
     {"Jaqueta reforçada", "Proteção Leve"},
     {"Fonte de Luz", "Utensílio"}
 };
 
-int i;
 
 // Funções
 void abrirFichaPersonagem() {
@@ -50,26 +32,102 @@ void abrirFichaPersonagem() {
     printf("Inteligência: %d\n", mauro.inteligencia);
     printf("Vigor: %d\n", mauro.vigor);
     printf("Presença: %d\n\n", mauro.presenca);
+}
 
-    printf("INVENTÁRIO ---------------------------------------\n");
-    printf("Item                    |  Descrição                           \n");
-    printf("--------------------------------------------------------------\n");
-    for (size_t i = 0; i < sizeof(inventario) / sizeof(inventario[0]); i++) {
-        printf("%-24s |  %s\n", inventario[i].nome, inventario[i].descricao);
+void inicializarInventario(Inventario *inv, int capacidadeInicial) {
+    inv->capacidade = capacidadeInicial;
+    inv->quantidade = sizeof(inventario) / sizeof(inventario[0]);
+    inv->itens = (item_inventario *) malloc(capacidadeInicial * sizeof(item_inventario));
+    
+    if (inv->itens == NULL) {
+        printf("Erro de alocação de memória!\n");
+        exit(1);
     }
-    printf("\n");
 
-    printf("ARMAS --------------------------------------------\n");
-    printf("Nome                    |  Dano   |  Alcance            \n");
-    printf("--------------------------------------------------------\n");
+    // Copia os itens padrão para o inventário
+    for (size_t i = 0; i < (size_t)inv->quantidade; i++) {
+        strcpy(inv->itens[i].nome, inventario[i].nome);
+        strcpy(inv->itens[i].descricao, inventario[i].descricao);
+    }
+}
+
+void adicionarItem(Inventario *inv, const char *nome, const char *descricao) {
+    if (inv->quantidade < inv->capacidade) {
+        strcpy(inv->itens[inv->quantidade].nome, nome);
+        strcpy(inv->itens[inv->quantidade].descricao, descricao);
+        inv->quantidade++;  // Incrementa a quantidade de itens
+    } else {
+        printf("Inventário cheio! Não é possível adicionar mais itens.\n");
+    }
+}
+
+void abrirInventario(Inventario *inv) {
+    printf("-----------------INVENTÁRIO(%d/%d)-------------------\n", inv->quantidade, inv->capacidade);
+    printf("Item                     |  Descrição                           \n");
+    printf("----------------------------------------------------\n");
+
+    // Verificar se há itens no inventário
+    if (inv->quantidade == 0) {
+        printf("O inventário está vazio.\n");
+    }
+
+    for (size_t i = 0; i < (size_t)inv->quantidade; i++) {
+        printf("%-24s |  %s\n", inv->itens[i].nome, inv->itens[i].descricao);
+    }
+
+    printf("-----------------------ARMAS------------------------\n");
+    printf("Nome                     |  Dano  |  Alcance            \n");
+    printf("----------------------------------------------------\n");
+
+    // Supondo que armas seja um array definido corretamente
     for (size_t i = 0; i < sizeof(armas) / sizeof(armas[0]); i++) {
-        printf("%-24s |  %d  |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
+        if (armas[i].dano < 10) {
+            printf("%-24s |  0%d    |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
+        } else {
+            printf("%-24s |  %d    |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
+        }
     }
-    printf("\n\n");
+
+    printf("----------------------------------------------------\n");
+    printf("\n");
+}
+
+void mostrarMenu(Inventario *inv){
+    int opcao;
+
+    do{
+        printf("1. Ver ficha do personagem\n");
+        printf("2. Ver inventário\n");
+        printf("3. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+
+        switch(opcao){
+            case 1:
+                system("cls");
+                abrirFichaPersonagem();
+                break;
+            case 2:
+                system("cls");
+                abrirInventario(inv);
+                break;
+            case 3:
+                printf("\nSaindo...\n");
+                Sleep(2000);
+                system("cls");
+                break;
+            default:
+                system("cls");
+                printf("Opção inválida! Tente novamente...\n");
+                break;
+        }
+    } while (opcao != 3);
 }
 
 int main(){
     setlocale(LC_ALL, "Portuguese");
+    Inventario inventario;
+    int capacidadeInicial = 10;
 
     // Tittle Screen
 
@@ -95,9 +153,13 @@ int main(){
 
     // Inicio do Jogo
 
-    abrirFichaPersonagem();
+    //Inicializações necessárias
+    inicializarInventario(&inventario, capacidadeInicial);
+    
+    
+    
 
-    getchar();
+    getch();
     return 0;
 }
 
