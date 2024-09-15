@@ -15,7 +15,11 @@ item_inventario inventario[] = {
     {"Jaqueta reforçada", "Proteção Leve"},
     {"Fonte de Luz", "Utensílio"}
 };
-
+arma armas[] = {
+    {"Katana", "Branca", "Adjacente", 10},
+    {"Faca de Combate", "Branca", "Curto", 6},
+    {"Revólver .38", "Fogo", "Curto", 8}
+};
 
 // Funções
 void abrirFichaPersonagem() {
@@ -188,8 +192,6 @@ int main(){
 
     //Tela de Início
     telaDeInicio();
-
-    cena1();
 
     getch();
     return 0;
