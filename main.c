@@ -5,8 +5,8 @@
 #include <windows.h>
 #include <locale.h>
 
-#include "characters.h"
-#include "weapons.h"
+#include "character/character.h"
+#include "weapons/weapons.h"
 
 int i;
 
