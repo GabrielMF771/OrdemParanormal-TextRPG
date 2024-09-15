@@ -22,7 +22,8 @@ void abrirFichaPersonagem() {
     printf("Mauro Nunes\n\n");
 
     printf("HISTÓRIA -----------------------------------------\n\n");
-    printf("Mauro Nunes era um personal trainer e lutador aflito com a falta de motivação pessoal em sua vida, até que presenciou ataque de uma criatura paranormal dentro da academia em que trabalhava. O seu instinto inicial foi partir para cima e proteger vida de todos que estavam lá, pois considerava as mais importantes que a sua, o que impressionou os agentes da Ordem que haviam acabado de chegar no local.\n\n");
+    printf("Mauro Nunes é um soldado recém recrutado pela Ordem que foi enviado para missão como guarda costas\n");
+    printf("de um especialista que desvendaria o caso.\n\n");
 
     printf("ATRIBUTOS -----------------------------------------\n\n");
     printf("Nex: %d%%\n", mauro.nex);
@@ -92,7 +93,7 @@ void abrirInventario(Inventario *inv) {
     printf("\n");
 }
 
-void mostrarMenu(Inventario *inv){
+void abrirMenu(Inventario *inv){
     int opcao;
 
     do{
@@ -124,40 +125,71 @@ void mostrarMenu(Inventario *inv){
     } while (opcao != 3);
 }
 
+// Cenas em Jogo
+
+void telaDeTitulo(){
+    system("cls");
+
+    printf("\n\n\n\n");
+    printf("\t\t***********************************************\n");
+    printf("\t\t*                                             *\n");
+    printf("\t\t*          ORDEM PARANORMAL - TEXT RPG        *\n");
+    printf("\t\t*                                             *\n");
+    printf("\t\t*                                             *\n");
+    printf("\t\t*          Gabriel Martins - 2024 v1.0        *\n");
+    printf("\t\t*                                             *\n");
+    printf("\t\t***********************************************\n");
+    printf("\n\n\n\n");
+    printf("\t\tPressione qualquer tecla para continuar...");
+
+    getch();
+}
+
+void telaDeInicio(){
+    system("cls");
+
+    printf("\n\n\n\n");
+    printf("\t\t*********************************************\n");
+    printf("\t\t*                                           *\n");
+    printf("\t\t*        O LAMENTO DO INTERCEPTADOR         *\n");
+    printf("\t\t*                                           *\n");
+    printf("\t\t*********************************************\n");
+    printf("\n");
+    printf("\t\tUma entidade de terror, o Interceptador, assola a rede militar brasileira,\n");
+    printf("\t\tcriando zumbis sanguinários e deixando um rastro de medo. Você, um soldado recém-recrutado,\n");
+    printf("\t\tdeve desvendar o mistério por trás dessa força sombria\n");
+    printf("\t\te enfrentar o ocultista que manipula o medo para alcançar poder.\n");
+    printf("\t\tEm uma corrida contra o tempo, ele precisa resolver o enigma\n");
+    printf("\t\tdo medo e confrontar a entidade antes que seja tarde demais.\n");
+    printf("\n\n");
+    printf("\t\tPressione qualquer tecla para continuar...");
+    
+    getch();
+}
+
+void cena1(){
+    system("cls");
+
+    
+}
+
 int main(){
     setlocale(LC_ALL, "Portuguese");
     Inventario inventario;
     int capacidadeInicial = 10;
 
-    // Tittle Screen
-
-    printf("\n\n\n\n\n\n\t\t\t\t\tOrdem Paranormal - Text RPG");
-    printf("\n\n\n\n\n\n\n\n\t\t\t\tPressione qualquer tecla para continuar...");
-    printf("\n\n\n\n\n\n\n\n\t\t\t\t\tGabriel Martins - 2024 v1.0");
-
-    getch();
-    
-    system("cls");
-
-    // Tela de inicio
-
-    printf("\n\n\n\n\n\n\n\n\n\t\t\t\t\tAs Mãos que Nos Acolhem");
-
-    printf("\n\n\n A cidade de Tronco do Oeste está borbulhando com desaparecimentos de crianças de 6 anos de idade. Todas desapareceram\n na noite do dia em que seus pais notaram misteriosas marcas de mãos em suas costas. Os recrutas da Ordem são enviados\n para a cidade para investigar esses desaparecimentos e determinar se o caso se trata de um evento paranormal.\n O que eles não esperavam era que iriam se deparar com um dilema: reportar o acontecido e esperar reforços,\n possivelmente colocando a vida de mais uma criança em perigo; ou enfrentar uma perigosa criatura, apesar de serem\n apenas recrutas?");
-
-    printf("\n\n\n\t\t\t\tPressione qualquer tecla para continuar...");
-    
-    getch();
-    
-    system("cls"); 
-
-    // Inicio do Jogo
-
     //Inicializações necessárias
     inicializarInventario(&inventario, capacidadeInicial);
     
-    
-    
+    //Capítulo 1 -----------------------------------------
+
+    //Tela de Título
+    telaDeTitulo();
+
+    //Tela de Início
+    telaDeInicio();
+
+    cena1();
 
     getch();
     return 0;
