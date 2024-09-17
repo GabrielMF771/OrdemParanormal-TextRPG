@@ -85,38 +85,43 @@ void adicionarItem(Inventario *inv, const char *nome, const char *descricao) {
 }
 
 void abrirInventario(Inventario *inv) {
-    printf("====================================================\n");
-    printf("|                  INVENTÁRIO                      |\n");
-    printf("|                    (%d/%d)                        |\n", inv->quantidade, inv->capacidade);
-    printf("====================================================\n");
-    printf("Item                     |  Descrição                           \n");
-    printf("----------------------------------------------------\n");
+    // Cabeçalho do inventário
+    printf("+==================================================+\n");
+    printf("|                     INVENTÁRIO                   |\n");
+    printf("|                       (%d/%d)                     |\n", inv->quantidade, inv->capacidade);
+    printf("+==================================================+\n\n");
+
+    printf("+==================================================+\n");
+    printf("| Item                     |  Descrição            |\n");
+    printf("+--------------------------+-----------------------+\n");
 
     // Verificar se há itens no inventário
     if (inv->quantidade == 0) {
-        printf("O inventário está vazio.\n");
-    }
-
-    for (size_t i = 0; i < (size_t)inv->quantidade; i++) {
-        printf("%-24s |  %s\n", inv->itens[i].nome, inv->itens[i].descricao);
-    }
-
-    printf("\n====================================================\n");
-    printf("|                     ARMAS                        |\n");
-    printf("====================================================\n");
-    printf("%-24s | %-6s|  %-10s\n", "Nome", "Dano", "Alcance");
-    printf("----------------------------------------------------\n");
-
-    for (size_t i = 0; i < sizeof(armas) / sizeof(armas[0]); i++) {
-        if (armas[i].dano < 10) {
-            printf("%-24s |  0%d   |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
-        } else {
-            printf("%-24s |  %d   |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
+        printf("| O inventário está vazio.                          |\n");
+    } else {
+        // Listagem dos itens do inventário
+        for (size_t i = 0; i < (size_t)inv->quantidade; i++) {
+            printf("| %-24s | %-20s  |\n", inv->itens[i].nome, inv->itens[i].descricao);
         }
     }
 
-    printf("----------------------------------------------------\n");
-    printf("\n");
+    printf("+==================================================+\n\n");
+
+    // Cabeçalho das armas
+    printf("+==================================================+\n");
+    printf("|                       ARMAS                      |\n");
+    printf("+==================================================+\n\n");
+
+    printf("+==================================================+\n");
+    printf("| Nome                     | Dano | Alcance        |\n");
+    printf("+--------------------------+------+----------------+\n");
+
+    // Listagem das armas
+    for (size_t i = 0; i < sizeof(armas) / sizeof(armas[0]); i++) {
+        printf("| %-24s | %03d  | %-12s   |\n", armas[i].nome, armas[i].dano, armas[i].alcance);
+    }
+
+    printf("+==================================================+\n\n");
 }
 
 void abrirMenu(Inventario *inv){
