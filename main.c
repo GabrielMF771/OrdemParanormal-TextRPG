@@ -21,7 +21,8 @@ arma armas[] = {
     {"Revólver .38", "Fogo", "Curto", 8}
 };
 
-// Funções
+// Funções Principais
+
 void abrirFichaPersonagem() {
     printf("Mauro Nunes\n\n");
 
@@ -39,10 +40,11 @@ void abrirFichaPersonagem() {
     printf("Presença: %d\n\n", mauro.presenca);
 }
 
-void inicializarInventario(Inventario *inv, int capacidadeInicial) {
-    inv->capacidade = capacidadeInicial;
+// Funções do Inventário
+void inicializarInventario(Inventario *inv, int capacidade) {
+    inv->capacidade = capacidade;
     inv->quantidade = sizeof(inventario) / sizeof(inventario[0]);
-    inv->itens = (item_inventario *) malloc(capacidadeInicial * sizeof(item_inventario));
+    inv->itens = (item_inventario *) malloc(capacidade * sizeof(item_inventario));
     
     if (inv->itens == NULL) {
         printf("Erro de alocação de memória!\n");
@@ -56,8 +58,23 @@ void inicializarInventario(Inventario *inv, int capacidadeInicial) {
     }
 }
 
+void ajustarCapacidade(Inventario *inv, int novaCapacidade) {
+    // Realoca a memória para a nova capacidade
+    inv->itens = (item_inventario *) realloc(inv->itens, novaCapacidade * sizeof(item_inventario));
+    
+    if (inv->itens == NULL) {
+        printf("Erro de alocação de memória!\n");
+        exit(1);
+    }
+    
+    // Atualiza a capacidade do inventário
+    inv->capacidade = novaCapacidade;
+
+    printf("Capacidade ajustada para %d itens.\n\n", inv->capacidade);
+}
+
 void adicionarItem(Inventario *inv, const char *nome, const char *descricao) {
-    if (inv->quantidade <= inv->capacidade) {
+    if (inv->quantidade < inv->capacidade) {
         strcpy(inv->itens[inv->quantidade].nome, nome);
         strcpy(inv->itens[inv->quantidade].descricao, descricao);
         inv->quantidade++;  // Incrementa a quantidade de itens
@@ -130,7 +147,6 @@ void abrirMenu(Inventario *inv){
 }
 
 // Cenas em Jogo
-
 void telaDeTitulo(){
     system("cls");
 
@@ -177,20 +193,21 @@ void cena1(){
 int main(){
     setlocale(LC_ALL, "Portuguese");
     Inventario inventario;
-    int capacidadeInicial = 10;
 
     //Inicializações necessárias
-    inicializarInventario(&inventario, capacidadeInicial);
+    inicializarInventario(&inventario, 10);
 
     //Capítulo 1 -----------------------------------------
 
     //Tela de Título
-    telaDeTitulo();
+    //telaDeTitulo();
 
     //Tela de Início
-    telaDeInicio();
+    //telaDeInicio();
 
-    cena1();
+    //cena1();
+
+    abrirInventario(&inventario);
     
     getch();
     return 0;
