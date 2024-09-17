@@ -155,17 +155,14 @@ void telaDeInicio(){
     printf("\n\n\n\n");
     printf("\t\t*********************************************\n");
     printf("\t\t*                                           *\n");
-    printf("\t\t*        O LAMENTO DO INTERCEPTADOR         *\n");
+    printf("\t\t*             TÍTULO DA MISSÃO              *\n");
     printf("\t\t*                                           *\n");
     printf("\t\t*********************************************\n");
     printf("\n");
-    printf("\t\tUma entidade de terror, o Interceptador, assola a rede militar brasileira,\n");
-    printf("\t\tcriando zumbis sanguinários e deixando um rastro de medo. Você, um soldado recém-recrutado,\n");
-    printf("\t\tdeve desvendar o mistério por trás dessa força sombria\n");
-    printf("\t\te enfrentar o ocultista que manipula o medo para alcançar poder.\n");
-    printf("\t\tEm uma corrida contra o tempo, ele precisa resolver o enigma\n");
-    printf("\t\tdo medo e confrontar a entidade antes que seja tarde demais.\n");
-    printf("\n\n");
+    printf("\t\tLorem ipsum dolor sit amet consectetur adipisicing elit.\n");
+    printf("\t\tQuas accusantium quaerat perspiciatis labore iusto? Nostrum debitis labore numquam, recusandae,\n");
+    printf("\t\tdolorem nisi illo dolorum voluptatum pariatur nihil at, eligendi error cupiditate?\n");
+    printf("\n");
     printf("\t\tPressione qualquer tecla para continuar...");
     
     getch();
