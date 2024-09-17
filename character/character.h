@@ -26,7 +26,6 @@ ficha_personagem mauro = {
     .presenca = 1
 };
 
-
 //Item no inventário
 typedef struct {
     char nome[50];
