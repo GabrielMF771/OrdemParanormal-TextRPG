@@ -85,7 +85,10 @@ void adicionarItem(Inventario *inv, const char *nome, const char *descricao) {
 }
 
 void abrirInventario(Inventario *inv) {
-    printf("-----------------INVENTÁRIO(%d/%d)-------------------\n", inv->quantidade, inv->capacidade);
+    printf("====================================================\n");
+    printf("|                  INVENTÁRIO                      |\n");
+    printf("|                    (%d/%d)                        |\n", inv->quantidade, inv->capacidade);
+    printf("====================================================\n");
     printf("Item                     |  Descrição                           \n");
     printf("----------------------------------------------------\n");
 
@@ -98,15 +101,17 @@ void abrirInventario(Inventario *inv) {
         printf("%-24s |  %s\n", inv->itens[i].nome, inv->itens[i].descricao);
     }
 
-    printf("-----------------------ARMAS------------------------\n");
-    printf("Nome                     |  Dano  |  Alcance            \n");
+    printf("\n====================================================\n");
+    printf("|                     ARMAS                        |\n");
+    printf("====================================================\n");
+    printf("%-24s | %-6s|  %-10s\n", "Nome", "Dano", "Alcance");
     printf("----------------------------------------------------\n");
 
     for (size_t i = 0; i < sizeof(armas) / sizeof(armas[0]); i++) {
         if (armas[i].dano < 10) {
-            printf("%-24s |  0%d    |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
+            printf("%-24s |  0%d   |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
         } else {
-            printf("%-24s |  %d    |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
+            printf("%-24s |  %d   |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
         }
     }
 
