@@ -57,12 +57,13 @@ void inicializarInventario(Inventario *inv, int capacidadeInicial) {
 }
 
 void adicionarItem(Inventario *inv, const char *nome, const char *descricao) {
-    if (inv->quantidade < inv->capacidade) {
+    if (inv->quantidade <= inv->capacidade) {
         strcpy(inv->itens[inv->quantidade].nome, nome);
         strcpy(inv->itens[inv->quantidade].descricao, descricao);
         inv->quantidade++;  // Incrementa a quantidade de itens
+        printf("%s foi adicionado ao inventário!\n\n", nome);
     } else {
-        printf("Inventário cheio! Não é possível adicionar mais itens.\n");
+        printf("\nInventário cheio! Não é possível adicionar mais itens.\n");
     }
 }
 
@@ -84,7 +85,6 @@ void abrirInventario(Inventario *inv) {
     printf("Nome                     |  Dano  |  Alcance            \n");
     printf("----------------------------------------------------\n");
 
-    // Supondo que armas seja um array definido corretamente
     for (size_t i = 0; i < sizeof(armas) / sizeof(armas[0]); i++) {
         if (armas[i].dano < 10) {
             printf("%-24s |  0%d    |  %s\n", armas[i].nome, armas[i].dano, armas[i].alcance);
@@ -174,7 +174,7 @@ void telaDeInicio(){
 void cena1(){
     system("cls");
 
-    
+    printf("Você está em uma van da ordem sendo conduzido para o local de sua missão.\nO motorista, cujo rosto está coberto por uma máscara, não disse uma única palavra durante toda a viagem.\nAo chegar no local, você avista uma casa cercada por fitas da polícia. Uma neblina rasa oculta parte do horizonte.\nAo descer da van com seus equipamentos, o motorista imediatamente dá a partida para ir embora.\nVocê está por conta própria.\n\nA sua frente, está a casa onde ocorreu um dos desaparecimentos. O que você faz?\n\n");
 }
 
 int main(){
@@ -184,7 +184,7 @@ int main(){
 
     //Inicializações necessárias
     inicializarInventario(&inventario, capacidadeInicial);
-    
+
     //Capítulo 1 -----------------------------------------
 
     //Tela de Título
@@ -193,6 +193,8 @@ int main(){
     //Tela de Início
     telaDeInicio();
 
+    cena1();
+    
     getch();
     return 0;
 }
